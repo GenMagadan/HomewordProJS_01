@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <script>
+      const musicCollection = [
+        {
+          title: 'Герои и злодеи',
+          artist: 'Король и шут',
+          year: 2000,
+        },
+        {
+          title: 'Дороги сна',
+          artist: 'Мельница',
+          year: 2003,
+        },
+        {
+          title: 'В Питере пить',
+          artist: 'Ленинград',
+          //  year: 2016,
+        },
+      ];
+
+      const player = {
+        [Symbol.iterator]: () => {
+          let index = 0;
+          return {
+            next() {
+              return index < musicCollection.length
+                ? { value: musicCollection[index++], done: false }
+                : { done: true };
+            },
+          };
+        },
+      };
+
+      for (const key of player) {
+        console.log(
+          `Альбом "${key.title}", исполнитель - группа "${key.artist}" (${key.year}г.)`
+        );
+      }
+    </script>
+  </body>
+</html>
