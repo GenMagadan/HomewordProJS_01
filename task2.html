@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Task 2</title>
+  </head>
+  <body>
+    <script>
+      let pizza = {
+        name1: 'Пепперони',
+        name2: 'Маргарита',
+      };
+      let sushi = {
+        name1: 'Калифорния',
+        name2: 'Филадельфия',
+      };
+      let dessert = {
+        name1: 'Тирамису',
+        name2: 'Чизкейк',
+      };
+
+      const cooks = new Map();
+      cooks.set('Виктор', pizza);
+      cooks.set('Ольга', sushi);
+      cooks.set('Дмитрий', dessert);
+
+      cooks.forEach((dish, cook) => {
+        let nameDish = '';
+        if (cook === 'Виктор') {
+          nameDish = 'Пицца';
+        }
+        if (cook === 'Ольга') {
+          nameDish = 'Суши';
+        }
+        if (cook === 'Дмитрий') {
+          nameDish = 'Десерт';
+        }
+        console.log(`${cook} - специализация: ${nameDish}`);
+        console.log('');
+        for (const key in dish) {
+          console.log(`${nameDish} "${dish[key]}" - повар ${cook}`);
+        }
+        console.log('');
+      });
+
+      const clients = new Map();
+      function customerOrder(client, order) {
+        if (!clients.has(client)) {
+          clients.set(client, new Set());
+        }
+        clients.get(client).add(order);
+      }
+
+      customerOrder('Алексей', 'Пицца "Пепперони"');
+      customerOrder('Алексей', 'Тирамису');
+      customerOrder('Мария', 'Суши "Калифорния"');
+      customerOrder('Мария', 'Пицца "Маргарита"');
+
+      // productionOrder();
+      console.log(`Заказ Алексея: ${[...clients.get('Алексей')]}`);
+      console.log(`Заказ Марии: ${[...clients.get('Мария')]}`);
+    </script>
+  </body>
+</html>
